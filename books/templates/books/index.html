@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block 'content' %}
+  <div class="d-flex py-4 align-items-center justify-content-between">
+    <h1>All books</h1>
+    <div>
+      <a class="d-inline btn btn-primary" href="{% url 'books.create' %}">Add a book</a>
+    </div>
+  </div>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Author</th>
+    <th>Price</th>
+    <th>Pages</th>
+    <th>image</th>
+    <th>actions</th>
+  </tr>
+
+  {% for book in books %}
+  <tr>
+    <td>{{book.id }}</td>
+    <td>{{book.name }}</td>
+    <td>{{book.author.name }}</td>
+    <td>{{book.price }}</td>
+    <td>{{book.no_of_pages }}</td>
+
+    <td>
+      <img
+        src="{{ book.image_url}}"
+        width="100"
+        height="100"
+      />
+    </td>
+    <td>
+      <a class="btn btn-info" href="{% url 'books.show' book.id %}">
+        Show
+      </a>
+      <a class="btn btn-success" href="{% url 'books.edit' book.id %}">
+        edit
+      </a>
+      <a class="btn btn-danger" href="{% url 'books.delete' book.id %}">
+        delete
+      </a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block 'content' %}
+<h1>{{book.name}}</h1>
+<h4>
+  author: 
+  <a href="{% url 'authors.show' book.author.id %}">{{book.author.name}}</a>
+</h4>
+<div class="card mb-3"  style="width: 18rem;">
+  <img
+    src="{{book.image_url}}"
+    width="300"
+    height="300"
+    class="card-img-top"
+    alt="..."
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{book.no_of_pages}} Pages</h5>
+    <h5 class="card-title">{{book.price}} EGP</h5>
+  </div>
+</div>
+<a href="{% url 'books.index' %}">Back</a>
+
+{% endblock %}

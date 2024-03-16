@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block 'content' %}
+<h1>{{author.name}}</h1>
+<!-- <h4>author: {{author.author}}</h4> -->
+<div class="card mb-3" style="width: 18rem;">
+  <img
+    src="{{author.image_url}}"
+    width="300"
+    height="300"
+    class="card-img-top"
+    alt="..."
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{author.bdate}}</h5>
+  </div>
+</div>
+<h2>Books:</h2>
+<ul>
+{% for book in author.books.all %}
+    <li>
+      <a href="{{ book.show_url}}">{{book.name}}</a>
+    </li>
+{% endfor %}  
+</ul>
+
+<a href="{% url 'authors.index' %}">Back</a>
+
+{% endblock %}
